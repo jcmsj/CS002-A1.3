@@ -12,6 +12,27 @@ public class MobilePhone {
         this.ratePerCall = defaultRatePerCall;
     }
 
+    public MobilePhone(float load) {
+        this.network = defaultNetwork;
+        this.ratePerCall = defaultRatePerCall;
+        this.reload(load);
+    }
+
+    public MobilePhone(char network) {
+        switch(network) {
+            case 'g':
+                ratePerCall = 7;
+            break;
+            case 't':
+                ratePerCall = 5;
+            break;
+            default:
+                network = defaultNetwork;
+                ratePerCall = defaultRatePerCall;
+        }
+        this.network = network;
+    }
+    
     public MobilePhone(float load, char network) {
         switch(network) {
             case 'g':
@@ -32,17 +53,16 @@ public class MobilePhone {
         return this.load;
     }
 
-    public void call(float minutes, char network) {
+    public boolean call(float minutes, char network) {
         float rate = this.isSameNetwork(network) ? this.ratePerCall: this.ratePerCall * 2;
-        this.reduce(minutes * rate);
+        return this.reduce(minutes * rate);
     }
 
-    public void text(int length, char network) {
+    public boolean text(int length, char network) {
         float rate = this.isSameNetwork(network) ? this.ratePerText: this.ratePerText * 2;
         float cost = ((float) length / MobilePhone.maxTextSize) * rate;
-        this.reduce(cost);
+        return this.reduce(cost);
     }
-
     /* @helper */
     public boolean isSameNetwork(char network) {
         return this.network == network;
@@ -52,12 +72,12 @@ public class MobilePhone {
         this.load += amount < 0 ? 0:amount;
     }
 
-    public void reduce(float amount) throws IllegalArgumentException {
+    public boolean reduce(float amount) {
         if (amount >= 0 && this.load >= amount) {
             this.load -= amount;
-            return;
+            return true;
         }
 
-        throw new IllegalArgumentException("Invalid amount or balance");
+        return false;
     }
 }
