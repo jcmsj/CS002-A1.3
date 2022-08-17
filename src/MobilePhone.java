@@ -1,3 +1,8 @@
+/** 
+ * @author Jean Carlo M. San Juan
+ * @since 8/17/2022
+ * An object that simulates the traditional network capabilities of a phone.
+ */
 public class MobilePhone {
     private float load = 0; //Default
     public final char network;

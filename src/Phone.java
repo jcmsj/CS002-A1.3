@@ -1,5 +1,10 @@
 import javax.swing.JOptionPane;
 
+/**
+ * @author Jean Carlo M. San Juan
+ * @since 8/17/2022
+ * A simple GUI for MobilePhone class.
+ */
 public class Phone extends MobilePhone {
     enum Action { //Represents the possible user states
         await,
