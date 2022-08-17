@@ -1,7 +1,7 @@
 import javax.swing.JOptionPane;
 
 public class Phone extends MobilePhone {
-    enum Action {
+    enum Action { //Represents the possible user states
         await,
         load,
         text,
@@ -98,7 +98,7 @@ public class Phone extends MobilePhone {
             invalidNumber();
             return;
         }
-        show(this.call(length, network) ? "Dialing...":insufficient);
+        show(this.call(length, network) ? "Dialing network...":insufficient);
     }
 
     public String askNetwork() {
