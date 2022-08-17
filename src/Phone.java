@@ -3,7 +3,8 @@ import javax.swing.JOptionPane;
 /**
  * @author Jean Carlo M. San Juan
  * @since 8/17/2022
- * A simple GUI for MobilePhone class.
+ * A simple runner GUI for MobilePhone class.
+ * It is extended to simplify process.
  */
 public class Phone extends MobilePhone {
     enum Action { //Represents the possible user states
