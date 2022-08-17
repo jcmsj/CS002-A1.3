@@ -19,6 +19,6 @@ public class MobilePhone {
     }
 
     public void reload(float amount) {
-        this.load += amount;
+        this.load += amount < 0 ? 0: amount;
     }
 }
