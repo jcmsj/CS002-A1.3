@@ -6,7 +6,6 @@ public class MobilePhone {
     public static final int maxTextSize = 160;
 
     public MobilePhone(float load, char network) {
-        this.load = load;
         switch(network) {
             case 'g':
                 this.ratePerCall = 7;
@@ -19,6 +18,7 @@ public class MobilePhone {
                 this.ratePerCall = 3;
         }
         this.network = network;
+        this.reload(load); //Negative is handled here
     }
 
     public float checkBalance() {
