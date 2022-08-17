@@ -4,6 +4,13 @@ public class MobilePhone {
     public final float ratePerText = 1;
     public final float ratePerCall;
     public static final int maxTextSize = 160;
+    public static final char defaultNetwork = 's';
+    public static final float defaultRatePerCall = 3;
+
+    public MobilePhone() {
+        this.network = defaultNetwork;
+        this.ratePerCall = defaultRatePerCall;
+    }
 
     public MobilePhone(float load, char network) {
         switch(network) {
@@ -14,11 +21,11 @@ public class MobilePhone {
                 this.ratePerCall = 5;
             break;
             default:
-                network = 's';
-                this.ratePerCall = 3;
+                network = defaultNetwork;
+                this.ratePerCall = defaultRatePerCall;
         }
         this.network = network;
-        this.reload(load); //Negative is handled here
+        this.reload(load); //Handle negative here
     }
 
     public float checkBalance() {
