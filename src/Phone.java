@@ -15,7 +15,7 @@ public class Phone extends MobilePhone {
         exit
     }
     protected Action action = Action.await;
-    public static final  String insufficient = "You have insufficient load to do the operation.";
+    public static final  String insufficient = "You have insufficient load or incorrect input.";
     public static void main(String[] args) {
         Phone phone = new Phone();
         phone.start();
@@ -112,6 +112,7 @@ public class Phone extends MobilePhone {
             Integer.parseInt(raw); //Throw away
         } catch (Exception e) {
             invalidNumber();
+            return;
         }
 
         show(this.call(duration, network) ? "Dialing network...":insufficient);

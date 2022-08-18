@@ -65,7 +65,7 @@ public class MobilePhone {
             return false;
 
         float rate = this.isSameNetwork(network) ? this.ratePerText: this.ratePerText * 2;
-        return this.reduce(length * rate);
+        return this.reduce(rate);
     }
     /* @helper */
     public boolean isSameNetwork(char network) {
