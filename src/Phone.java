@@ -2,7 +2,7 @@ import javax.swing.JOptionPane;
 
 /**
  * @author Jean Carlo M. San Juan
- * @since 8/17/2022
+ * @since 8/18/2022
  * A simple runner GUI for MobilePhone class.
  * It is extended to simplify process.
  */
@@ -95,16 +95,26 @@ public class Phone extends MobilePhone {
             return;
         }
         char network = raw.charAt(0);
+        if (!isValidNetwork(network)) {
+            show("Unkown network: " + network);
+            return;
+        }
         raw = ask("Enter estimated call time:");
-
-        float length;
+        float duration;
         try {
-            length = Float.parseFloat(raw);
+            duration = Float.parseFloat(raw);
         } catch (Exception e) {
             invalidNumber();
             return;
         }
-        show(this.call(length, network) ? "Dialing network...":insufficient);
+        raw = ask("Enter number: ");
+        try {
+            Integer.parseInt(raw); //Throw away
+        } catch (Exception e) {
+            invalidNumber();
+        }
+
+        show(this.call(duration, network) ? "Dialing network...":insufficient);
     }
 
     public String askNetwork() {
@@ -124,6 +134,7 @@ public class Phone extends MobilePhone {
             return;
         }
         char network = raw.charAt(0);
+
         show("Status: " +
             (this.text(text.length(), network) ? "sent": insufficient)
         );
